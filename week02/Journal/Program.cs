@@ -4,6 +4,20 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello World! This is the Journal Project.");
+        Journal myJournal = new Journal();
+        PromptGenerator promptGen = new PromptGenerator();
+
+        string prompt = promptGen.GetRandomPrompt();
+
+        Entry entry = new Entry();
+        entry._date = DateTime.Now.ToShortDateString();
+        entry._promptText = prompt;
+
+        Console.WriteLine(prompt);
+        entry._entryText = Console.ReadLine();
+
+        myJournal.AddEntry(entry);
+
+        myJournal.DisplayAll();
     }
 }
