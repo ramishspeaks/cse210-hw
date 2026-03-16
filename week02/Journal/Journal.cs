@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 public class Journal
 {
@@ -18,13 +19,33 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string file)
+    public void SaveToFile(string filename)
     {
-        // will implement later
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            foreach (Entry entry in _entries)
+            {
+                outputFile.WriteLine($"{entry._date}|{entry._promptText}|{entry._entryText}");
+            }
+        }
     }
 
-    public void LoadFromFile(string file)
+    public void LoadFromFile(string filename)
     {
-        // will implement later
+        string[] lines = File.ReadAllLines(filename);
+
+        _entries.Clear();
+
+        foreach (string line in lines)
+        {
+            string[] parts = line.Split("|");
+
+            Entry entry = new Entry();
+            entry._date = parts[0];
+            entry._promptText = parts[1];
+            entry._entryText = parts[2];
+
+            _entries.Add(entry);
+        }
     }
 }
