@@ -14,8 +14,13 @@ public class Customer
         return _address.IsUSA();
     }
 
-    public string GetShippingLabel()
+    public string GetName()
     {
-        return $"{_name}\n{_address.GetFullAddress()}";
+        return _name;
+    }
+
+    public string GetAddress()
+    {
+        return _address.GetFullAddress();
     }
 }
