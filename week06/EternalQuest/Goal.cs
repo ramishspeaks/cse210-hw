@@ -14,11 +14,15 @@ public abstract class Goal
     }
 
     public abstract int RecordEvent();
-
     public abstract bool IsComplete();
 
     public virtual string GetDetailsString()
     {
         return $"{_name} ({_description})";
+    }
+
+    public virtual string GetStringRepresentation()
+    {
+        return $"{_name}|{_description}|{_points}";
     }
 }
